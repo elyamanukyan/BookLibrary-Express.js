@@ -1,0 +1,39 @@
+<% include _header %>
+<h1>Books List</h1>
+<a class="btn btn-primary" href="/books/createBook" >Add Book</a>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>By User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% books.forEach(function(book) { %>
+    <% if(book.title != null ) {%>
+    <tr>
+        <td>
+            <a href="/books/<%= book.title %>">
+                <%= book.title %>
+            </a>
+        </td>
+        <td>
+            <a href = "/books/search/<%= book.author  %>"><%= book.author %></a>
+        </td>
+        <td>
+            <a href="/users/<%= book.userId._id %>">
+                <%= book.userId.username %>
+            </a>
+        </td>
+
+    </tr>
+
+    <%  } %>
+
+    <% }) %>
+
+    </tbody>
+</table>
+<% include _footer %>

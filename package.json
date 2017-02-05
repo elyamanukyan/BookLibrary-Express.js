@@ -1,0 +1,29 @@
+{
+  "name": "martakan",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js",
+    "server:dev": "export NODE_ENV=development; nodemon app.js",
+    "server:prod": "export NODE_ENV=production; nodemon app.js",
+    "server:test": "export NODE_ENV=test; nodemon app.js"
+  },
+  "dependencies": {
+    "multer" : "0.1.6",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "1.15.2",
+    "connect-flash": "0.1.1",
+    "cookie-parser": "1.4.3",
+    "ejs": "2.5.5",
+    "express": "4.14.0",
+    "express-session": "1.14.2",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "4.7.2",
+    "passport": "0.3.2",
+    "passport-local": "1.0.0"
+  },
+  "version": "1.0.0",
+  "description": "start2",
+  "main": "app.js",
+  "author": "Elya",
+  "license": "ISC"
+}

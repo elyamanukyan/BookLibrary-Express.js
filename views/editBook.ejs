@@ -1,0 +1,8 @@
+<% include _header %>
+<h1>Edit Book <%= book.title %></h1>
+<form action="/books/<%= book._id || "" %>" method="post">
+    <input name="title" type="text" class="form-control" placeholder="Title" value="<%= book.title || "" %>">
+    <input name="author" class="form-control" placeholder="Author" value="<%= book.author || "" %>">
+    <input type="submit" value="Update" class="btn btn-primary btn-block">
+</form>
+<% include _footer %>

@@ -1,0 +1,31 @@
+<% include _header %>
+<% if ((currentUser) && (currentUser.id === user.id)) { %>
+<a href="/edit" class="pull-right">Edit your profile</a>
+<% } %>
+<h1><%= user.name() %></h1>
+<% if (user.bio) { %>
+<p><%= user.bio %></p>
+<% } %>
+
+<% if (user.image) { %>
+<img src="/<%= user.image %>" alt="image" height="42" width="42">
+<% } %>
+
+
+<% if(user.books.length>0){ %>
+<h2>Books</h2>
+<% user.books.forEach(function(book) {
+    if(book.title != null ) {%>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="/books/<%= book.title %>">
+                <%= book.title %> - <%= book.author %>
+            </a>
+        </div>
+    </div>
+<%  }
+})
+} %>
+
+
+<% include _footer %>

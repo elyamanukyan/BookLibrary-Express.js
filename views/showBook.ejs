@@ -1,0 +1,16 @@
+<% include _header %>
+<% if ((currentUser) && (currentUser.id == book.userId._id)) {  %>
+
+<form action ="/books/deleteBook/<%= book._id %>" method="post">
+    <button class='btn btn-danger pull-right' type="submit" ><span class="fa fa-times"></span> Delete Book</button>
+</form>
+<a class="btn btn-primary pull-right" href="/books/editBook/<%= book.title %>" >Edit Book</a>
+
+<% } %>
+<h1><%= book.title %></h1>
+<h2>Author: <%= book.author %></h2>
+<% if (book.image) { %>
+<img src="/<%= book.image %>" alt="image" width="420">
+<% } %>
+
+<% include _footer %>
