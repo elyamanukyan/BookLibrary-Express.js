@@ -11,7 +11,7 @@ module.exports = {
         res.render("signup");
     },
 
-    signup: function (req, res) {
+    signup: function (req, res,next) {
         let {username, password} = req.body;
 
         User.findOne({username})
@@ -24,29 +24,23 @@ module.exports = {
                     username,
                     password
                 });
+                let token = jwt.sign(
+                    {
+                        username,
+                        password
+                    },
+                    conf.jwtSecret,
+                    {
+                        expiresIn: 36000 // in seconds
+                    });
 
-                let token = jwt.sign(newUser, conf.jwtSecret, {
-                    expiresIn: 10080 // in seconds
-                });
-                res.json({
-                    success: true,
-                    token: 'JWT ' + token
-                });
+                res.cookie('authorization', token);
+
                 if(res.status(200)){
-                    return newUser.save();
-                    // console.log('aaa')
+                    return newUser.save()
                 }
-
-
-                // let token = jwt.sign(newUser, conf.jwtSecret, {
-                //     expiresIn: 3600000 // in seconds
-                // })
-                // let authUser = _.pick(newUser, '_id', 'username')
-                // res.status(200).json({authUser, token})
-                // next()
-
             })
-            .then(function (user,token) {
+            .then(function (user) {
                 // console.log(res.status(200));
                 if (user) {
                     (passport.authenticate("login", {
@@ -67,6 +61,19 @@ module.exports = {
     },
 
     login: function (req, res, next) {
+        let {username, password} = req.body;
+        let token = jwt.sign(
+            {
+                username,
+                password
+            },
+            conf.jwtSecret,
+            {
+                expiresIn: 36000 // in seconds
+            });
+
+        res.cookie('authorization', token);
+
         (passport.authenticate("login", {
             successRedirect: "/",
             failureRedirect: "/login",
@@ -75,6 +82,7 @@ module.exports = {
     },
 
     logout: function (req, res) {
+        res.clearCookie("authorization");
         req.logout();
         res.redirect("/");
     }

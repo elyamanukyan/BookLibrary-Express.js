@@ -30,8 +30,11 @@ module.exports = {
     },
     add: function (req, res, next) {
         let {userId, title, author} = req.body;
-        console.log(req.files)
-        let image = req.files.image.name
+        // console.log(req.files)
+        let image  = '';
+        if(req.files.image){
+            image = req.files.image.name
+        }
         let newBook = new Book({
             userId,
             title,
