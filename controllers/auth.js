@@ -51,7 +51,8 @@ module.exports = {
                 }
             })
             .catch(function (err) {
-                return res.render("err", {err: err})
+                res.json(err)
+                // return res.render("err", {err: err})
             });
 
     },

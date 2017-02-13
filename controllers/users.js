@@ -8,10 +8,13 @@ module.exports = {
         User.find()
             .sort({createdAt: "descending"})
             .then(function (users) {
-                return res.render("index", {users: users})
+                res.json(users)
+                // res.status(200).json(users);
+                // return res.render("index", {users: users})
             })
             .catch(function (err) {
-                return res.render("err", {err: err})
+                res.json(err)
+                // return res.render("err", {err: err})
             })
     },
 
@@ -19,10 +22,12 @@ module.exports = {
         User.findOne({_id: req.params.id})
         .populate('books')
             .then(function (user) {
-                return res.render("profile", {user: user});
+                res.json(user)
+                // return res.render("profile", {user: user});
             })
             .catch(function (err) {
-                return res.render("err", {err: err})
+                res.json(err)
+                // return res.render("err", {err: err})
             })
     },
 
@@ -43,7 +48,8 @@ module.exports = {
                 req.flash("info", "Profile updated!");
                 res.redirect("/")
             }, function (err) {
-                console.log(err)
+                res.json(err)
+                // console.log(err)
             })
     },
 
