@@ -17,6 +17,7 @@ module.exports = {
         User.findOne({username})
             .then(function (user) {
                 if (user) {
+					
                     req.flash("error", "User already exists");
                     return res.redirect("/signup");
                 }
