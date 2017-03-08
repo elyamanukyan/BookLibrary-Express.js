@@ -36,7 +36,6 @@ module.exports = {
                     });
 
                 res.cookie('authorization', token);
-
                 if(res.status(200)){
                     return newUser.save()
                 }
