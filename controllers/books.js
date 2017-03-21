@@ -7,12 +7,12 @@ module.exports = {
             .populate('userId')
             .sort({createdAt: "descending"})
             .then(function (books) {
-                res.json(books)
-                // return res.render("books", {books: books})
+                // res.json(books)
+                return res.render("books", {books: books})
             })
             .catch(function (err) {
-                res.json(err)
-                // return res.render("err", {err: err})
+                // res.json(err)
+                return res.render("err", {err: err})
             })
     },
     getMyBooks: function (req, res) {
@@ -21,12 +21,12 @@ module.exports = {
             .populate('userId')
             .sort({createdAt: "descending"})
             .then(function (books) {
-                res.json(books)
-                // return res.render("books", {books: books})
+                // res.json(books)
+                return res.render("books", {books: books})
             })
             .catch(function (err) {
-                res.json(err)
-                // return res.render("err", {err: err})
+                // res.json(err)
+                return res.render("err", {err: err})
             })
     },
     create: function (req, res) {
@@ -52,8 +52,8 @@ module.exports = {
                 user.save();
             })
             .catch(function (err) {
-                res.json(err)
-                // return res.render("err", {err: err})
+                // res.json(err)
+                return res.render("err", {err: err})
             })
         return res.redirect('/books')
 
@@ -63,12 +63,12 @@ module.exports = {
             .findOne({title: req.params.title})
             .populate('userId')
             .then(function (book) {
-                res.json(book)
-                // return res.render("showBook", {book: book});
+                // res.json(book)
+                return res.render("showBook", {book: book});
             })
             .catch(function (err) {
-                res.json(err)
-                // return res.render("err", {err: err})
+                // res.json(err)
+                return res.render("err", {err: err})
             })
     },
     edit: function(req, res) {
@@ -84,8 +84,8 @@ module.exports = {
                 req.flash("info", "Book updated!");
                 res.redirect("/books")
             }, function (err) {
-                res.json(err)
-                // console.log(err)
+                // res.json(err)
+                console.log(err)
             })
     },
     //Not By Id Only Update
@@ -96,8 +96,8 @@ module.exports = {
                     req.flash("info", "Book deleted!");
                     res.redirect("/books")
                 },function (err) {
-                res.json(err)
-                // console.log(err)
+                // res.json(err)
+                console.log(err)
                 }
             );
     },
@@ -107,12 +107,12 @@ module.exports = {
             .populate('userId')
             .sort({createdAt: "descending"})
             .then(function (books) {
-                res.json(books)
-                // return res.render("books", {books: books})
+                // res.json(books)
+                return res.render("books", {books: books})
             })
             .catch(function (err) {
-                res.json(err)
-                // return res.render("err", {err: err})
+                // res.json(err)
+                return res.render("err", {err: err})
             })
     }
 
