@@ -17,6 +17,7 @@ module.exports = {
         User.findOne({username})
             .then(function (user) {
                 if (user) {
+					
                     req.flash("error", "User already exists");
                     return res.redirect("/signup");
                 }
@@ -35,7 +36,6 @@ module.exports = {
                     });
 
                 res.cookie('authorization', token);
-
                 if(res.status(200)){
                     return newUser.save()
                 }
